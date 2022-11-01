@@ -4,6 +4,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 315, 315 )
 
 [node name="Player" type="KinematicBody2D"]
 input_pickable = true
@@ -18,4 +19,5 @@ texture = ExtResource( 2 )
 current = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 4, 9.5 )
 shape = SubResource( 1 )

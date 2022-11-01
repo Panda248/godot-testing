@@ -26,11 +26,11 @@ public class Player : KinematicBody2D
 			MoveAndCollide(new Vector2(velocity * directionX * delta, velocity * directionY * delta));
 
 		}
-    public override void _Input(InputEvent @event)
-    {
-        base._Input(@event);
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
 		
-    }
+	}
 
 	private void inputMovement()	{
 		if(Input.IsActionPressed("ui_left"))	{
