@@ -22,9 +22,10 @@ public class Player : KinematicBody2D
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(float delta)
 		{
+			LookAt(GetGlobalMousePosition());
 			inputMovement();
-			MoveAndCollide(new Vector2(velocity * directionX * delta, velocity * directionY * delta));
-
+			MoveAndCollide(new Vector2(directionX, directionY).Normalized() * (delta*velocity));
+			
 		}
 	public override void _Input(InputEvent @event)
 	{
@@ -51,5 +52,10 @@ public class Player : KinematicBody2D
 		else {
 			directionY = 0;
 		}
+
+	}
+
+	public void punch()	{
+		
 	}
 }

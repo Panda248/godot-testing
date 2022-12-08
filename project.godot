@@ -54,6 +54,10 @@ config/name="game"
 run/main_scene="res://Test Scene.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+shapes/collision/shape_color=Color( 1, 1, 1, 1 )
+
 [display]
 
 window/size/width=1920

@@ -1,29 +1,41 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.cs" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Camera2D.cs" type="Script" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+render_priority = 1
+blend_mode = 4
+light_mode = 1
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 318.5, 318.493 )
 
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 199.0
+height = 240.0
+
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 2
 input_pickable = true
 script = ExtResource( 1 )
 velocity = 50
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-scale = Vector2( 10, 10 )
-texture = ExtResource( 2 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 smoothing_enabled = true
-script = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-modulate = Color( 0, 0.415686, 1, 1 )
+[node name="Sprite" type="CollisionShape2D" parent="."]
+modulate = Color( 0, 0.321569, 1, 1 )
+material = SubResource( 2 )
 position = Vector2( -1.49976, -0.493385 )
 rotation = -0.00023256
 shape = SubResource( 1 )
+
+[node name="Attack" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
+modulate = Color( 1, 1, 1, 0.5 )
+position = Vector2( 450, 0 )
+rotation = 1.5708
+shape = SubResource( 3 )
