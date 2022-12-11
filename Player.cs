@@ -8,6 +8,10 @@ public class Player : KinematicBody2D
 	// private string b = "text";
 	private int directionX;
 	private int directionY;
+	
+	private int bullet_speed = 500;
+	
+	PackedScene bullet = (PackedScene) ResourceLoader.Load("res://Bullet.tscn");
 
 	[Export]
 	public int velocity = 10;
@@ -19,14 +23,14 @@ public class Player : KinematicBody2D
 		directionY = 0;
 	}
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(float delta)
-		{
-			LookAt(GetGlobalMousePosition());
-			inputMovement();
-			MoveAndCollide(new Vector2(directionX, directionY).Normalized() * (delta*velocity));
-			
-		}
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(float delta)
+	{
+		LookAt(GetGlobalMousePosition());
+		inputMovement();
+		MoveAndCollide(new Vector2(directionX, directionY).Normalized() * (delta*velocity));
+	}
+
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
@@ -53,9 +57,23 @@ public class Player : KinematicBody2D
 			directionY = 0;
 		}
 
+		if(Input.IsActionPressed("LMB")) {
+			fire();
+		}
+
 	}
 
 	public void punch()	{
 		
+	}
+
+	public void fire(){
+		var bulletInstance = bullet.Instance();
+		bulletInstance.Position = getGlobalPosition();
+		bulletInstance.rotation_degrees = rotation_degrees;
+		bulletInstance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(rotation));
+
+		get_tree().get_root().call_deffered("add_child", bulletInstance);
+
 	}
 }
