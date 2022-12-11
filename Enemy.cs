@@ -24,7 +24,19 @@ public class Enemy : KinematicBody2D
 	{
 		
 	}
-
+	private void _on_FOV_body_entered(object body)
+	{
+		if(body == GetParent().GetNode("Player"))	{
+			File f = new File();
+			String path = "res://Chase.cs";
+			if(!f.FileExists(path))	{
+				GD.Print("Chase.cs can't be found :(");
+			}
+			GD.Print("Chasing");
+			SetScript(GD.Load(path));
+		}
+	}
+	
 	// public void chase(Node node)	{
 	// 	chasing = true;
 	// 	target = node;
@@ -42,3 +54,9 @@ public class Enemy : KinematicBody2D
 	// 	}
 	// }
 }
+
+
+
+
+
+
