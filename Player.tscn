@@ -21,6 +21,7 @@ script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 5, 5 )
 smoothing_enabled = true
 
 [node name="Sprite" type="CollisionShape2D" parent="."]
