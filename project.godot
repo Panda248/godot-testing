@@ -14,7 +14,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Topdown Shooter"
+config/name="2d game"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
