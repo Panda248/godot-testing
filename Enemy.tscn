@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://face-anger-with-focus.2.png" type="Texture" id=1]
-[ext_resource path="res://Idle.gd" type="Script" id=2]
+[ext_resource path="res://Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Idle.gd" type="Script" id=3]
+[ext_resource path="res://Chase.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 custom_solver_bias = 1.0
@@ -30,6 +32,14 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FOV"]
 modulate = Color( 1, 1, 1, 0.0588235 )
 shape = SubResource( 2 )
+
+[node name="Behaviours" type="Node" parent="."]
+
+[node name="Chase" type="KinematicBody2D" parent="Behaviours"]
+script = ExtResource( 4 )
+
+[node name="Idle" type="KinematicBody2D" parent="Behaviours"]
+script = ExtResource( 3 )
 
 [connection signal="body_entered" from="FOV" to="." method="_on_FOV_body_entered"]
 [connection signal="body_exited" from="FOV" to="." method="_on_FOV_body_exited"]
